@@ -1,20 +1,17 @@
 # Jenkins Django Shared Libraries
 
-A collection of reusable Jenkins shared library functions for building, testing, and deploying **Django** applications.
-
-This repository contains Groovy shared library scripts designed to be used in Jenkins pipelines, enabling consistent CI/CD workflows across multiple Django projects.
+A collection of reusable Jenkins shared library functions for building, testing, and deploying Django applications.
 
 ## Repository Structure
+
+```
 .
 ├── vars/
-│ └── *.groovy # Shared library functions
-├── README.md # Project documentation
+│   └── *.groovy    # Shared library functions
+└── README.md       # Project documentation
+```
 
-
-- `vars/` contains reusable pipeline steps.
-- Each Groovy file in `vars/` is automatically exposed as a Jenkins pipeline function.
-
----
+Each Groovy file in `vars/` is automatically exposed as a Jenkins pipeline function.
 
 ## Prerequisites
 
@@ -22,32 +19,22 @@ This repository contains Groovy shared library scripts designed to be used in Je
 - Jenkins agent with required tools (Git, Docker, Python, etc.)
 - This repository configured as a **Global Pipeline Library** in Jenkins
 
----
+## Setup
 
-## Jenkins Configuration
-
-1. Go to **Manage Jenkins → Configure System**
-2. Scroll to **Global Pipeline Libraries**
-3. Add a new library:
-   - **Name:** `DjangoDemo` (or any name you prefer)
+1. Navigate to **Manage Jenkins → Configure System**
+2. Scroll to **Global Pipeline Libraries** and add a new library:
+   - **Name:** `DjangoDemo`
    - **Default version:** `main`
-   - **Retrieval method:** Modern SCM
-   - **Source Code Management:** Git
-   - **Project Repository:**  
-     `https://github.com/AbhishekPok/Jenkins_DJANGO_shared_Libraries.git`
-
----
+   - **Retrieval method:** Modern SCM → Git
+   - **Project Repository:** `https://github.com/AbhishekPok/Jenkins_DJANGO_shared_Libraries.git`
 
 ## Usage Example
-
-Use the shared library in your `Jenkinsfile`:
 
 ```groovy
 @Library('DjangoDemo') _
 
 pipeline {
     agent any
-
     stages {
         stage('Code Fetch') {
             steps {
@@ -61,3 +48,4 @@ pipeline {
         }
     }
 }
+```
